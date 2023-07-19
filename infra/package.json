@@ -9,6 +9,7 @@
     "cdk": "cdk",
     "cdk-synth": "cdk synth",
     "cdk-deploy": "cdk deploy",
+    "cdk-bootstrap": "cdk bootstrap",
     "test": "jest"
   },
   "devDependencies": {
