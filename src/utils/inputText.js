@@ -1,56 +1,46 @@
-import { useState } from "react";
+import { useFormContext } from "react-hook-form";
+import { ErrorMessage } from "@hookform/error-message";
+
+function InputError( id, message) {
+  return (<>{message && <div className="error" {...id}>Error:{message}</div>}</>);
+  
+}
 
 export default function InputText({
   label,
-  regex,
+  id,
   placeholder,
+  validation,
   password = false,
-  required = false,
 }) {
-  const [value, setValue] = useState("");
-  const [error, setError] = useState("");
-  const [emp, setEmpty] = useState(true);
-
-  function onValueChange(e) {
-    if (e.target.value === "") {
-      setValue("");
-      setEmpty(true);
-      required ? setError("Value Required") : setError("");
-    } else if (regex.test(e.target.value)) {
-      setValue(e.target.value);
-      setError("");
-      setEmpty(false);
-    } else {
-      setError("Incorrect value");
-    }
-  }
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext();
 
   return (
     <>
-      <label htmlFor="textValue" className="text label">
-        {" "}
-        {label}{" "}
+      <label htmlFor={id} className={id}>
+        {label}
       </label>
       <input
         type={password ? "password" : "text"}
-        className="textValue"
-        value={value}
+        className={id}
         placeholder={placeholder}
-        onChange={onValueChange}
+        {...register(id, validation)}
       />
-      {error !== "" ? (
-        <label htmlFor="textValue" className="error">
-          {error}
-        </label>
-      ) : (
-        ""
-      )}
+      <ErrorMessage
+        errors={errors}
+        name={id}
+        render={({ message }) => InputError(id, message)}
+      />
     </>
   );
 }
 
 InputText.defaultProps = {
-  label: "text",
-  regex: /^[a-zA-Z\s]+$/,
-  placeholder: "Enter text here",
+  label: "Default label",
+  id: "Default id",
+  placeholder: "Default Placeholder",
+  validation: {},
 };
