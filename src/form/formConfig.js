@@ -13,7 +13,7 @@ export const userNameConfig = {
     },
     pattern: {
       value: /^[\w@_-\s]+$/,
-      message: "",
+      message: "Value not allowed",
     },
   },
 };

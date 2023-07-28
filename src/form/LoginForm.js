@@ -1,21 +1,36 @@
 import InputText from "../utils/inputText";
+import { FormProvider, useForm } from "react-hook-form";
+import * as formConfig from "./formConfig";
 
 export default function LoginForm() {
-    return (
-      <div className="Login">
-        <InputText
-          label="User name"
-          regex={/^[a-zA-Z\s]+$/}
-          placeholder="Enter user name"
-          required = {true}
-        />
-        <InputText
-          label="Password"
-          regex={/^[\w@_-\s]+$/}
-          placeholder="Enter Password"
-          password = {true}
-          required = {true}
-        />
-      </div>
-    );
+  const methods = useForm({
+    mode: "all",
+    defaultValues: {
+      userName: "",
+      password: "",
+    },
+  });
+
+  const onSubmit = methods.handleSubmit(data => {
+    console.log(data);
+  });
+
+  return (
+    <div className="Login">
+      <FormProvider {...methods}>
+        <form onSubmit={(e) => e.preventDefault()} noValidate>
+          <InputText
+            {...formConfig.userNameConfig}
+          />
+          <br />
+          <InputText
+            {...formConfig.passwordConfig}
+          />
+        <div>
+          <button onClick={onSubmit}>Submit</button>
+        </div>
+        </form>
+      </FormProvider>
+    </div>
+  );
 }
