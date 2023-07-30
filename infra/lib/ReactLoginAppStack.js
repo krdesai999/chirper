@@ -1,5 +1,5 @@
-const { Stack, RemovalPolicy } = require("aws-cdk-lib");
-const { s3, Bucket} = require("aws-cdk-lib/aws-s3");
+const { Stack, RemovalPolicy, CfnOutput } = require("aws-cdk-lib");
+const { s3, Bucket } = require("aws-cdk-lib/aws-s3");
 const { BucketDeployment, Source } = require("aws-cdk-lib/aws-s3-deployment");
 const {
   Distribution,
@@ -23,7 +23,6 @@ class ReactLoginAppStack extends Stack {
       autoDeleteObjects: true,
     });
 
-    
     const FrontEndDistribution = new Distribution(
       this,
       "FrontEndDistribution",
@@ -42,14 +41,19 @@ class ReactLoginAppStack extends Stack {
         ],
       }
     );
-    
+
     new BucketDeployment(this, "DeployToBucket", {
       destinationBucket: storageBucket,
       sources: [Source.asset("./resources/build")],
       distribution: FrontEndDistribution,
       distributionPaths: ["/*"],
     });
-    
+
+    new CfnOutput(this, "FrontEndUrl", {
+      value: FrontEndDistribution.domainName,
+      description: "URL for the deployed react app",
+      exportName: "FrontEndUrl",
+    });
   }
 }
 
