@@ -1,5 +1,5 @@
 const { Stack, RemovalPolicy, CfnOutput } = require("aws-cdk-lib");
-const { s3, Bucket } = require("aws-cdk-lib/aws-s3");
+const { BlockPublicAccess, Bucket } = require("aws-cdk-lib/aws-s3");
 const { BucketDeployment, Source } = require("aws-cdk-lib/aws-s3-deployment");
 const {
   Distribution,
@@ -7,6 +7,7 @@ const {
 } = require("aws-cdk-lib/aws-cloudfront");
 const { S3Origin } = require("aws-cdk-lib/aws-cloudfront-origins");
 
+const path = "./resources/build";
 class ReactLoginAppStack extends Stack {
   /**
    *
@@ -18,7 +19,7 @@ class ReactLoginAppStack extends Stack {
     super(scope, id, props);
 
     const storageBucket = new Bucket(this, "LoginApp", {
-      blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
+      blockPublicAccess: BlockPublicAccess.BLOCK_ALL,
       removalPolicy: RemovalPolicy.DESTROY,
       autoDeleteObjects: true,
     });
@@ -43,8 +44,8 @@ class ReactLoginAppStack extends Stack {
     );
 
     new BucketDeployment(this, "DeployToBucket", {
+      sources: [Source.asset(path)],
       destinationBucket: storageBucket,
-      sources: [Source.asset("./resources/build")],
       distribution: FrontEndDistribution,
       distributionPaths: ["/*"],
     });
