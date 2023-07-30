@@ -2,7 +2,7 @@
 
 const cdk = require('aws-cdk-lib');
 // const { InfraStack } = require('../lib/infra-stack');
-const { ReactLoginAppStack } = require("..lib/ReactLoginAppStack");
+const { ReactLoginAppStack } = require("../lib/ReactLoginAppStack");
 
 const app = new cdk.App();
 new ReactLoginAppStack(app, "ReactLoginAppStack", {});
