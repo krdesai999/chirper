@@ -1,6 +1,6 @@
 const { Stack, RemovalPolicy } = require("aws-cdk-lib");
-const { s3 } = require("aws-cdk-lib/aws-s3");
-const { s3Deploy } = require("aws-cdk-lib/aws-s3-deployment");
+const { s3, Bucket} = require("aws-cdk-lib/aws-s3");
+const { BucketDeployment, Source } = require("aws-cdk-lib/aws-s3-deployment");
 const {
   Distribution,
   ViewerProtocolPolicy,
@@ -17,17 +17,13 @@ class ReactLoginAppStack extends Stack {
   constructor(scope, id, props) {
     super(scope, id, props);
 
-    const storageBucket = new s3.Bucket(this, "LoginApp", {
+    const storageBucket = new Bucket(this, "LoginApp", {
       blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
       removalPolicy: RemovalPolicy.DESTROY,
       autoDeleteObjects: true,
     });
 
-    new s3Deploy.BucketDeployment(this, "DeployToBucket", {
-      destinationBucket: storageBucket,
-      sources: [s3Deploy.Source.asset("./resources/build")],
-    });
-
+    
     const FrontEndDistribution = new Distribution(
       this,
       "FrontEndDistribution",
@@ -46,6 +42,14 @@ class ReactLoginAppStack extends Stack {
         ],
       }
     );
+    
+    new BucketDeployment(this, "DeployToBucket", {
+      destinationBucket: storageBucket,
+      sources: [Source.asset("./resources/build")],
+      distribution: FrontEndDistribution,
+      distributionPaths: ["/*"],
+    });
+    
   }
 }
 
