@@ -9,6 +9,7 @@ frontend:
         - npm ci
     build:
       commands:
+        - echo "REACT_APP_CLIENTID=$CLIENTID" >> .env
         - npm run build
     artifacts:
       baseDirectory: build
