@@ -1,7 +1,4 @@
 version: 1
-env:
-  variables:
-    key: value
 frontend:
   phases:
     preBuild:
@@ -11,9 +8,9 @@ frontend:
       commands:
         - echo "REACT_APP_CLIENTID=$CLIENTID" >> .env
         - npm run build
-    artifacts:
-      baseDirectory: build
-      files:
-        - "**/*"
-      cache:
-        - node_modules/**/*
+  artifacts:
+    baseDirectory: build
+    files:
+      - "**/*"
+    cache:
+      - node_modules/**/*
