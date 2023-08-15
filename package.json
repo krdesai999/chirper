@@ -16,6 +16,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "build-css": "npx tailwindcss -i ./src/pages/main.css -o ./public/styles.css",
     "deploy": "npm install && npm run build && cd infra && npm install && npm run cdk-synth && npm run cdk-deploy",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -37,5 +38,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.3.3"
   }
 }
