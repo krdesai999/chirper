@@ -1,6 +1,7 @@
 import LoginForm from "../form/LoginForm.js";
 import SignUp from "../form/Signup.js";
+import { content } from "../utils/PageManager.js";
 
-export default function LoginSignup(login = true) {
-  return (<>{login ? <LoginForm /> : <SignUp />}</>);
+export default function LoginSignup({page = content.login}) {
+  return <>{page === content.login ? <LoginForm /> : <SignUp />}</>;
 }
