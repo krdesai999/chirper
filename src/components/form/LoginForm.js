@@ -17,7 +17,6 @@ export default function LoginForm() {
   const contentUpdater = useContext(ContentUpdateContext);
 
   const onSubmit = methods.handleSubmit((data) => {
-    console.log(4);
     contentUpdater({
       type: contentActions.toBlogs,
       payload: { data: data, from: content.login },

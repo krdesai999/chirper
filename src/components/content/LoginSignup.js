@@ -6,7 +6,6 @@ import { content } from "../utils/PageManager.js";
 
 export default function LoginSignup() {
   const page = useContext(ContentContext);
-  console.log(3);
   return (
     <>{page.currentContent === content.login ? <LoginForm /> : <SignUp />}</>
   );

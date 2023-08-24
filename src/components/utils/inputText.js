@@ -40,7 +40,7 @@ export default function InputText({
 
 InputText.defaultProps = {
   label: "Default label",
-  id: "Default id",
+  id: "defaultId",
   placeholder: "Default Placeholder",
   validation: {},
 };

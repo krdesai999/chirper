@@ -5,7 +5,6 @@ import LoginSignup from "./LoginSignup";
 
 export default function Content() {
   const contentManager = useContext(ContentContext);
-  console.log(2);
   return (
     <div className="content">
       <svg
