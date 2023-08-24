@@ -1,9 +1,11 @@
+import { useContext } from "react";
+import { ContentContext } from "../../pages/Home";
 import Blogs from "./blogs";
 import LoginSignup from "./LoginSignup";
 
-export default function Content({ pageManager, pageDispatch }) {
-  console.log(pageManager.loggedIn);
-  console.log(pageManager.currentContent);
+export default function Content() {
+  const contentManager = useContext(ContentContext);
+  console.log(2);
   return (
     <div className="content">
       <svg
@@ -21,8 +23,8 @@ export default function Content({ pageManager, pageDispatch }) {
           d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
         />
       </svg>
-      {!pageManager.loggedIn ? (
-        <LoginSignup page={pageManager.currentContent} />
+      {!contentManager.loggedIn ? (
+        <LoginSignup />
       ) : (
         <Blogs />
       )}
