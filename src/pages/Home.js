@@ -4,44 +4,9 @@ import Header from "../components/header/Header";
 import SideBar from "../components/sidebar/Sidebar";
 import "./Home.css";
 import {
-  content,
-  contentActions,
   pageManager,
+  contentReducer
 } from "../components/utils/PageManager";
-
-function contentReducer(pageManager, action) {
-  console.log("Some action: ", action.type);
-  switch (action.type) {
-    // Content change to login
-    case contentActions.tologin:
-      if (!pageManager.loggedIn)
-        return { ...pageManager, currentContent: content.login };
-      return pageManager;
-
-    // Content change to sign up
-    case contentActions.toSignUp:
-      if (!pageManager.loggedIn)
-        return { ...pageManager, currentContent: content.signUp };
-      return pageManager;
-
-    // Content change To blogs
-    case contentActions.toBlogs:
-      if (!pageManager.loggedIn) {
-        if (
-          action.payload.from === content.login ||
-          action.payload.from === content.signUp
-        ) {
-          return pageManager;
-        } else return { ...pageManager, currentContent: content.login };
-      } else if (pageManager.loggedIn) {
-        return { ...pageManager, currentContent: content.blogs };
-      }
-      return pageManager;
-
-    default:
-      return pageManager;
-  }
-}
 
 export const ContentContext = createContext();
 export const ContentUpdateContext = createContext();
