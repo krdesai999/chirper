@@ -25,6 +25,7 @@ export default function LoginForm() {
 
   return (
     <div className="Login">
+      <h1>Login</h1>
       <FormProvider {...methods}>
         <form onSubmit={(e) => e.preventDefault()} noValidate>
           <InputText {...formConfig.userNameConfig} />
