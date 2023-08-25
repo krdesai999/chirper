@@ -1,13 +1,9 @@
-var awsConfig = {
-  region: process.env.region,
-  ClientId: process.env.ClientId,
+export const awsConfig = {
+  region: process.env.REACT_APP_REGION,
+  ClientId: process.env.REACT_APP_CLIENT_ID,
 };
 
-var poolConfig = {
-  UserPoolId: process.env.UserPoolId,
+export const poolConfig = {
+  UserPoolId: process.env.REACT_APP_CLIENT_ID,
   ClientId: awsConfig.ClientId,
 };
-
-
-module.exports.poolConfig = poolConfig;
-module.exports.awsConfig = awsConfig;
