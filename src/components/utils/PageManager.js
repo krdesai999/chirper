@@ -39,13 +39,22 @@ export function contentReducer(prevPageManager, action) {
       if (!prevPageManager.loggedIn) {
         // Logging in
         if (action.payload.from === content.login) {
-          return login("a", "b")
-            ? { ...prevPageManager, currentContent: content.blogs }
+          console.log(action.payload.data);
+          return login(
+            action.payload.data.userName,
+            action.payload.data.password
+          )
+            ? { ...prevPageManager, loggedIn: true, currentContent: content.blogs }
             : { ...prevPageManager, currentContent: content.login };
         }
         // Signing up
         else if (action.payload.from === content.signUp) {
-          return signUp("a", "b")
+          console.log(action.payload.data);
+          return signUp(
+            action.payload.data.userName,
+            action.payload.data.password,
+            action.payload.data.attributes
+          )
             ? { ...prevPageManager, currentContent: content.blogs }
             : { ...prevPageManager, currentContent: content.signUp };
         }
