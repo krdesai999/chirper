@@ -21,7 +21,7 @@ export default function Home() {
     <div className="Home">
       {/* Header */}
       <div className="headerContainer bg-opacity-1 bg-blue-900 w-full">
-        <Header />
+        <Header contentManager = { contentManager } contentDispatch = { contentDispatch } />
       </div>
 
       {/* Sidebar & content */}
