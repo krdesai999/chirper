@@ -3,6 +3,8 @@ import { UserDetail } from "./UserDetail";
 
 var AmazonCognitoIdentity = require("amazon-cognito-identity-js");
 
+console.log(awsConfig);
+console.log(poolConfig);
 function getPool() {
   return new AmazonCognitoIdentity.CognitoUserPool(poolConfig);
 }
