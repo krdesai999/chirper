@@ -5,7 +5,7 @@ const githubConfig = {
   repository: "chirper",
   productionBranch: "master",
   developmentBranch: "dev",
-  testBranch: "infra",
+  testBranch: "test",
 };
 
 exports.githubConfig = githubConfig;
