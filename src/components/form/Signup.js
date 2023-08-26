@@ -19,7 +19,18 @@ export default function SignUp() {
     // Content change reducer
     const contentUpdater = useContext(ContentUpdateContext);
 
+    function handleAttributes(data) {
+      var tempArray = [];
+      for (const [key, value] of Object.entries(data)) {
+        if(key!=="userName" || key!== "password")
+        console.log(`${key}: ${value}`);
+      tempArray.push(value);
+      }
+      return tempArray;
+    }
+
     const onSubmit = methods.handleSubmit((data) => {
+      data.attributes = handleAttributes(data);
       contentUpdater({
         type: contentActions.toBlogs,
         payload: { data: data, from: content.signUp },
