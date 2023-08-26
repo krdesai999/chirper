@@ -6,9 +6,9 @@ frontend:
         - npm ci
     build:
       commands:
-        - echo "REACT_APP_CLIENT_ID=$CLIENT_ID" >> .env
-        - echo "REACT_APP_REGION=us-east-1" >> .env
-        - echo "REACT_APP_USER_POOL_ID=$USER_POOL_ID" >> .env
+        - echo "REACT_APP_CLIENT_ID=$CLIENT_ID" >> build/.env
+        - echo "REACT_APP_REGION=us-east-1" >> build/.env
+        - echo "REACT_APP_USER_POOL_ID=$USER_POOL_ID" >> build/.env
         - npm run build
   artifacts:
     baseDirectory: build
