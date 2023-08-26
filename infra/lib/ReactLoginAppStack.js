@@ -21,28 +21,31 @@ class ReactLoginAppStack extends Stack {
   constructor(scope, id, props) {
     super(scope, id, props);
 
-    // const usersPool = new UserPool(this, "Users", {
-    //   userPoolName: "Users",
-    //   signInCaseSensitive: false,
-    //   selfSignUpEnabled: true,
-    //   signInAliases: {
-    //     email: true,
-    //     username: true,
-    //   },
-    //   autoVerify: {
-    //     email: true,
-    //   },
-    //   passwordPolicy: {
-    //     minLength: 1,
-    //     requireLowercase: true,
-    //     requireDigits: true,
-    //   },
-    // });
+    const usersPool = new UserPool(this, "Users", {
+      userPoolName: "Users",
+      signInCaseSensitive: false,
+      selfSignUpEnabled: true,
+      signInAliases: {
+        email: true,
+        username: true,
+      },
+      autoVerify: {
+        email: true,
+      },
+      passwordPolicy: {
+        minLength: 1,
+        requireLowercase: true,
+        requireDigits: true,
+      },
+    });
 
-    // const client = usersPool.addClient("ReactApp");
-    // const clientID = client.userPoolClientId;
+    const userPoolID = usersPool.userPoolId;
 
-    const amplifyApp = new App(this, "Fronten-end-app", {
+    // Client ID
+    const client = usersPool.addClient("ReactApp");
+    const clientID = client.userPoolClientId;
+
+    const amplifyApp = new App(this, "Front-end-app", {
       description: "Frontend Code",
       sourceCodeProvider: new GitHubSourceCodeProvider({
         owner: config.githubConfig.owner,
@@ -50,8 +53,8 @@ class ReactLoginAppStack extends Stack {
         oauthToken: SecretValue.unsafePlainText(config.githubConfig.oauthToken),
       }),
       environmentVariables: {
-        // clientID: clientID,
-        test: "Works",
+        CLIENT_ID: clientID,
+        USER_POOL_ID: userPoolID
       },
     });
 
