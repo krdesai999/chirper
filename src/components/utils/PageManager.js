@@ -24,14 +24,18 @@ export function contentReducer(prevPageManager, action) {
       if (!prevPageManager.loggedIn) {
         return { ...prevPageManager, currentContent: content.login };
       }
-      return prevPageManager;
+      else {
+        return { ...prevPageManager, loggedIn: true, currentContent: content.blogs }
+      }
 
     // Content change to sign up
     case contentActions.toSignUp:
       if (!prevPageManager.loggedIn) {
         return { ...prevPageManager, currentContent: content.signUp };
       }
-      return prevPageManager;
+      else {
+        return { ...prevPageManager, loggedIn: true, currentContent: content.blogs }
+      }
 
     // Content change To blogs
     case contentActions.toBlogs:
