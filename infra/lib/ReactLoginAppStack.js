@@ -33,7 +33,7 @@ class ReactLoginAppStack extends Stack {
         email: true,
       },
       passwordPolicy: {
-        minLength: 1,
+        minLength: 6,
         requireLowercase: true,
         requireDigits: true,
       },
