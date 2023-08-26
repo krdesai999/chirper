@@ -1,6 +1,6 @@
 import "./Sidebar.css";
 
-function SideBar(loggedIn = false) {
+function SideBar({ contentManager, contentDispatch }) {
   return (
     <nav className="sidebar relative">
       <svg
@@ -17,7 +17,7 @@ function SideBar(loggedIn = false) {
           d="M6 18L18 6M6 6l12 12"
         />
       </svg>
-      {loggedIn ? (
+      {contentManager.loggedIn ? (
         <ul className="sidebarContent">
           <li className="flex justify-end border-red-500 list">
             Home
@@ -77,7 +77,6 @@ function SideBar(loggedIn = false) {
           Welcome to chirper! Chirp, but with care!
         </div>
       )}
-      <ul></ul>
     </nav>
   );
 }

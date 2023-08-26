@@ -28,7 +28,7 @@ export default function Home() {
       <div className="mainContainer grid md:grid-cols-6">
         {/* Sidebar */}
         <div className="sidebarContainer hidden md:block md:col-span-1 bg-gray-300">
-          <SideBar />
+          <SideBar contentManager = {contentManager} contentDispatch={contentDispatch} />
         </div>
 
         {/* Content */}
