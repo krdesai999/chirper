@@ -54,7 +54,7 @@ class ReactLoginAppStack extends Stack {
       }),
       environmentVariables: {
         CLIENT_ID: clientID,
-        USER_POOL_ID: userPoolID
+        USER_POOL_ID: userPoolID,
       },
     });
 
