@@ -4,6 +4,6 @@ export const awsConfig = {
 };
 
 export const poolConfig = {
-  UserPoolId: process.env.REACT_APP_CLIENT_ID,
+  UserPoolId: process.env.REACT_APP_USER_POOL_ID,
   ClientId: awsConfig.ClientId,
 };
