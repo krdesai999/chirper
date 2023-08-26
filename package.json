@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@hookform/error-message": "^2.0.1",
+    "@aws-cdk/aws-amplify-alpha": "^2.91.0-alpha.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -16,9 +17,9 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build ",
     "build-css": "npx tailwindcss build src/pages/Home.css -o public/Home.css",
-    "deploy": "npm install && npm run build && cd infra && npm install && npm run cdk-synth && npm run cdk-deploy",
+    "deploy": "npm install && npm run build && cd infra && npm install && npm run cdk-bootstrap && npm run cdk-synth && npm run cdk-deploy",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
