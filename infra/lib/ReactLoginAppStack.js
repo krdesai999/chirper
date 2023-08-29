@@ -10,7 +10,6 @@ const { UserPool } = require("aws-cdk-lib/aws-cognito");
 const { App, GitHubSourceCodeProvider } = require("@aws-cdk/aws-amplify-alpha");
 const config = require("../config.js");
 
-const path = "./resources/build";
 class ReactLoginAppStack extends Stack {
   /**
    *
@@ -37,6 +36,7 @@ class ReactLoginAppStack extends Stack {
         requireLowercase: true,
         requireDigits: true,
       },
+      removalPolicy: RemovalPolicy.DESTROY,
     });
 
     const userPoolID = usersPool.userPoolId;
