@@ -1,7 +1,7 @@
 import { useAuth } from "../Auth";
 import "./Sidebar.css";
 
-function SideBar({ contentManager, contentDispatch }) {
+function SideBar() {
   const auth = useAuth();
 
   return (

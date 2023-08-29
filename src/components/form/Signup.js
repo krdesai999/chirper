@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { ContentUpdateContext } from "../../pages/Home";
 import { content, contentActions } from "../utils/PageManager";
 
-export default function SignUp() {
+export default function SignUpForm() {
 
     // React hook default
     const methods = useForm({
