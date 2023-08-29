@@ -1,6 +1,9 @@
+import { useAuth } from "../Auth";
 import "./Sidebar.css";
 
 function SideBar({ contentManager, contentDispatch }) {
+  const auth = useAuth();
+
   return (
     <nav className="sidebar relative">
       <svg
@@ -17,7 +20,11 @@ function SideBar({ contentManager, contentDispatch }) {
           d="M6 18L18 6M6 6l12 12"
         />
       </svg>
-      {contentManager.loggedIn ? (
+      {!auth.user ? (
+        <div className="sidebarContent">
+          Welcome to chirper! Chirp, but with care!
+        </div>
+      ) : (
         <ul className="sidebarContent">
           <li className="flex justify-end border-red-500 list">
             Home
@@ -72,10 +79,6 @@ function SideBar({ contentManager, contentDispatch }) {
             </svg>
           </li>
         </ul>
-      ) : (
-        <div className="sidebarContent">
-          Welcome to chirper! Chirp, but with care!
-        </div>
       )}
     </nav>
   );
