@@ -1,10 +1,7 @@
-import { poolConfig, awsConfig } from "../config/awsConfig";
-import { UserDetail } from "./UserDetail";
+import { poolConfig } from "../config/awsConfig";
 
 var AmazonCognitoIdentity = require("amazon-cognito-identity-js");
 
-console.log(awsConfig);
-console.log(poolConfig);
 function getPool() {
   return new AmazonCognitoIdentity.CognitoUserPool(poolConfig);
 }
@@ -17,21 +14,23 @@ function handleAttributes(attributes) {
   return result;
 }
 
-export function signUp(userName, password, attributes = []) {
+export function SignUp(userName, password, attributes = []) {
+
   attributes = handleAttributes(attributes);
 
   let userPool = getPool();
   userPool.signUp(userName, password, attributes, null, function (err, result) {
     if (err) {
       alert(err.message || JSON.stringify(err));
-      return false;
+      return "";
     }
-    // var cognitoUser = result.user;
-    alert("Successfully registered!");
-    return true;
+    else{
+      alert("Successfully registered!");
+      return "/blogs";
+    }
   });
 
-  return false;
+  return "";
 }
 
 export function login(userName, password) {
