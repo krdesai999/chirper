@@ -33,7 +33,7 @@ class ReactLoginAppStack extends Stack {
         email: true,
       },
       passwordPolicy: {
-        minLength: 1,
+        minLength: 6,
         requireLowercase: true,
         requireDigits: true,
       },
@@ -54,7 +54,7 @@ class ReactLoginAppStack extends Stack {
       }),
       environmentVariables: {
         CLIENT_ID: clientID,
-        USER_POOL_ID: userPoolID
+        USER_POOL_ID: userPoolID,
       },
     });
 
