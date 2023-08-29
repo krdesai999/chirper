@@ -39,6 +39,7 @@ export default function SignUpForm() {
     data.attributes = handleAttributes(data);
     const redirectTo = SignUp(data.userName, data.password, data.attributes);
     if (redirectTo === "/blogs"){
+      auth.login(data.userName);
       return navi(redirectTo);
     }
   });
