@@ -3,7 +3,7 @@ import { useAuth } from "../Auth";
 
 export default function Redirect() {
     const auth = useAuth();
-    if (auth.user){
+    if (!auth.user){
         console.log("Login first!");
         return <Navigate to="/auth/login" />
     }
