@@ -3,20 +3,12 @@ import Content from "../components/content/Content";
 import Header from "../components/header/Header";
 import SideBar from "../components/sidebar/Sidebar";
 import "./Home.css";
-import {
-  pageManager,
-  contentReducer
-} from "../components/utils/PageManager";
 import { Outlet } from "react-router";
 
 export const ContentContext = createContext();
 export const ContentUpdateContext = createContext();
 
 export default function Home() {
-  const [contentManager, contentDispatch] = useReducer(
-    contentReducer,
-    pageManager
-  );
 
   return (
     <div className="Home">
