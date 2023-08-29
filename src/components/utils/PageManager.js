@@ -1,4 +1,4 @@
-import { login, signUp } from "../User/UserManagement";
+import { login, SignUp } from "../User/UserManagement";
 
 export const content = {
   login: "login",
@@ -54,7 +54,7 @@ export function contentReducer(prevPageManager, action) {
         // Signing up
         else if (action.payload.from === content.signUp) {
           console.log(action.payload.data);
-          return signUp(
+          return SignUp(
             action.payload.data.userName,
             action.payload.data.password,
             action.payload.data.attributes
