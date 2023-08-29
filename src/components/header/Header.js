@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import { useAuth } from "../Auth";
 import "./Header.css";
 
-function Header({ contentManager, contentDispatch }) {
+function Header() {
   const auth = useAuth();
 
   return (
@@ -12,18 +12,12 @@ function Header({ contentManager, contentDispatch }) {
 
         {!auth.user ? (
           <div className="flex my-1">
-            <div
-              className="cursor-pointer btn"
-              onClick={() => NavLink("auth/login")}
-            >
+            <NavLink to="auth/login" className="cursor-pointer btn">
               Login
-            </div>
-            <div
-              className="ml-1 mr-1 cursor-pointer btn"
-              onClick={() => NavLink("auth/signUp")}
-            >
+            </NavLink>
+            <NavLink to="auth/signUp" className="ml-1 mr-1 cursor-pointer btn">
               SignUp
-            </div>
+            </NavLink>
           </div>
         ) : (
           <div className="profile-pic">
